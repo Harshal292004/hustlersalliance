@@ -2,16 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "../ui/Button";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -47,33 +38,32 @@ export function ForgotPasswordForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       {success ? (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Check Your Email</CardTitle>
-            <CardDescription>Password reset instructions sent</CardDescription>
-          </CardHeader>
-          <CardContent>
+        <div>
+          <div>
+            <div className="text-2xl">Check Your Email</div>
+            <div>Password reset instructions sent</div>
+          </div>
+          <div>
             <p className="text-sm text-muted-foreground">
               If you registered using your email and password, you will receive
               a password reset email.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       ) : (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Reset Your Password</CardTitle>
-            <CardDescription>
+        <div>
+          <div>
+            <div className="text-2xl">Reset Your Password</div>
+            <div>
               Type in your email and we&apos;ll send you a link to reset your
               password
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+            </div>
+          </div>
+          <div>
             <form onSubmit={handleForgotPassword}>
               <div className="flex flex-col gap-6">
                 <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
+                  <input
                     id="email"
                     type="email"
                     placeholder="m@example.com"
@@ -97,8 +87,8 @@ export function ForgotPasswordForm({
                 </Link>
               </div>
             </form>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       )}
     </div>
   );
