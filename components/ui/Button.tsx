@@ -1,32 +1,33 @@
-import React from "react";
-import { libre_baskerville } from "@/lib/fonts";
-import { cva, type VariantProps } from "class-variance-authority";
+"use client";
+import { forwardRef } from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot"
+import { motion,HTMLMotionProps } from "motion/react";
+import { libre_baskerville } from "@/lib/fonts";
+
 const buttonVariants = cva(
-  // Moved font class out of the main string template
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 transition-all duration-200 ease-in-out",
+  "relative inline-flex items-center justify-center gap-2 font-medium transition-colors",
   {
     variants: {
       variant: {
-        default:
-          "rounded-md bg-[#292929] dark:bg-[#E9E5D8] text-[#E9E5D8] dark:text-[#292929] hover:bg-[#292929]/90 dark:hover:bg-[#E9E5D8]/90 hover:scale-[1.03] active:scale-[0.98] shadow-md hover:shadow-lg",
+        solid:
+          "rounded-md bg-[#292929] text-[#E9E5D8] dark:bg-[#E9E5D8] dark:text-[#292929]",
         outline:
-          "rounded-md border border-[#292929] dark:border-[#E9E5D8] text-[#292929] dark:text-[#E9E5D8] hover:bg-[#292929]/10 dark:hover:bg-[#E9E5D8]/10 hover:scale-[1.03] active:scale-[0.98]",
-        underline:
-          "underline-offset-4 hover:underline text-[#292929] dark:text-[#E9E5D8] hover:text-opacity-80 active:text-opacity-60",
+          "rounded-md border border-current dark:border-current text-current",
         ghost:
-          "rounded-md text-[#292929] dark:text-[#E9E5D8] dark:hover:bg-[#E9E5D8]/10 hover:bg-[#292929]/10 hover:scale-[1.03] active:scale-[0.98]",
+          "rounded-md text-current hover:bg-current/10 dark:hover:bg-current/10",
+        underline: "text-current",
       },
       size: {
-        default: "h-10 px-4 py-2 text-base",
-        sm: "h-9 rounded-md px-3 text-sm",
-        lg: "h-11 rounded-md px-8 text-lg",
+        default: "h-10 px-4 text-base",
+        sm: "h-8 px-3 text-sm",
+        lg: "h-12 px-8 text-lg",
         icon: "h-10 w-10",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "solid",
       size: "default",
     },
   }
@@ -38,29 +39,32 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-const Button = 
-React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    { className, variant, size,asChild = false,...props  }
-    , 
-    ref
-  ) => {
-
-    const Comp= asChild ?Slot :"button"
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, children, ...props }, ref) => {
+    const Comp = asChild ? Slot : motion.button;
     return (
-      <Comp
+      <motion.'hhriuvniesurvneiunviesnvfijn'
+        ref={ref}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.96 }}
         className={cn(
           libre_baskerville.className,
           buttonVariants({ variant, size }),
           className
         )}
-        ref={ref}
-
         {...props}
-      />
+      >
+        {children}
+        {variant === "underline" && (
+          <motion.span
+            aria-hidden
+            className="absolute left-0 -bottom-0.5 h-[1.5px] w-full origin-left bg-current"
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ type: "spring", stiffness: 300, damping: 24 }}
+          />
+        )}
+      </motion.>
     );
-
   }
 );
-
-export { Button, buttonVariants };

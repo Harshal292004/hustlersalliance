@@ -2,9 +2,9 @@
 import React from "react";
 import { AuthButton } from "./auth/Auth-button";
 import { NavbarWraper } from "./NavbarWraper";
-const Navbar= async () => {
+const Navbar= async ({id}:{id:string}) => {
   const auth= await AuthButton();
-  return <NavbarWraper auth={auth}></NavbarWraper>
+  return <NavbarWraper id={id } auth={auth}></NavbarWraper>
 };
 
 export {Navbar}
