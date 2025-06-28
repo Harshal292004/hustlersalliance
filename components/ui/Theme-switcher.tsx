@@ -20,7 +20,7 @@ const ThemeSwitcher = () => {
   const ICON_SIZE = 16;
 
   return (
-    <Button onClick={setTheme}>
+    <Button onClick={(e)=>{e.preventDefault(); setTheme(prev=> prev==="dark"?"light":"dark")}}>
       {theme === "light" ? (
         <Sun key="light" size={ICON_SIZE} className={"text-muted-foreground"} />
       ) : theme === "dark" ? (

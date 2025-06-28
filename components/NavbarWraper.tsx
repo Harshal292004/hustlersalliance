@@ -3,7 +3,7 @@ import React from "react";
 import { libre_baskerville } from "@/lib/fonts";
 import { scrollToSection } from "@/lib/scrollToSection";
 import { motion } from "motion/react";
-
+import { Button } from "./ui/Button";
 const NavbarWraper = ({ auth }: { auth: React.ReactNode }) => {
   return (
     <div>
@@ -13,7 +13,10 @@ const NavbarWraper = ({ auth }: { auth: React.ReactNode }) => {
         {/*Text logo */}
         <div></div>
         {/*About Us*/}
-        <motion.a
+        <Button onClick={()=>{}} variant={"underline"}>
+          About Us
+        </Button>
+        {/* <motion.a
           href="about_us"
           onClick={(e) => {
             e.preventDefault();
@@ -35,7 +38,7 @@ const NavbarWraper = ({ auth }: { auth: React.ReactNode }) => {
             animate={{ width: "100%" }}
             transition={{ duration: 0.3 }}
           />
-        </motion.a>
+        </motion.a> */}
         {/*Review*/}
         <motion.a
           href="about_us"
