@@ -19,7 +19,6 @@ export default function Home() {
       <AboutUs id="about-us"></AboutUs>
       <Reviews id="reviews"></Reviews>
       <Purchase id="purchase"></Purchase>
-      <Title title=""></Title>
       <Footer></Footer>
     </>
   );

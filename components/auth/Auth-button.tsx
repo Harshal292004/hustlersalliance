@@ -1,28 +1,29 @@
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import { LogoutButton } from "./Logout-button";
-
 import { Button } from "../ui/Button";
+
 export async function AuthButton() {
   const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  if (user) {
+    return (
+      <div className="flex items-center gap-4">
+        <span className="text-sm text-muted-foreground">Hey, {user.email}!</span>
+        <LogoutButton />
+      </div>
+    );
+  }
 
-  return user ? (
-    <div className="flex items-center gap-4">
-      Hey, {user.email}!
-      <LogoutButton />
-    </div>
-  ) : (
-    <div className="flex gap-2">
-      <Button asChild>
-       <Link href={"/auth/login"}>Login</Link>
+  return (
+    <>
+      <Button asChild className="mr-2 ml-2">
+        <Link href="/auth/login">Login</Link>
       </Button>
-      <Button>
+      <Button asChild>
         <Link href="/auth/sign-up">Signup</Link>
       </Button>
-    </div>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { motion,HTMLMotionProps } from "motion/react";
+import { motion } from "motion/react";
 import { libre_baskerville } from "@/lib/fonts";
 
 const buttonVariants = cva(
@@ -12,7 +12,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         solid:
-          "rounded-md bg-[#292929] text-[#E9E5D8] dark:bg-[#E9E5D8] dark:text-[#292929]",
+          "rounded-lg bg-[#292929] text-[#E9E5D8] dark:bg-[#E9E5D8] dark:text-[#292929]",
         outline:
           "rounded-md border border-current dark:border-current text-current",
         ghost:
@@ -20,7 +20,7 @@ const buttonVariants = cva(
         underline: "text-current",
       },
       size: {
-        default: "h-10 px-4 text-base",
+        default: "h-8 px-3 text-base",
         sm: "h-8 px-3 text-sm",
         lg: "h-12 px-8 text-lg",
         icon: "h-10 w-10",
@@ -34,17 +34,36 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>,
+    'onDrag' | 'onDragStart' | 'onDragEnd' | 'onDragOver' | 'onDragEnter' | 'onDragLeave' | 'onDrop' | 'draggable'>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, children, ...props }, ref) => {
-    const Comp = asChild ? Slot : motion.button;
+  ({ className, variant, size, asChild = false, children, type, onClick, disabled, tabIndex, ...props }, ref) => {
+    if (asChild) {
+      return (
+        <Slot
+          ref={ref}
+          className={cn(
+            libre_baskerville.className,
+            buttonVariants({ variant, size }),
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </Slot>
+      );
+    }
     return (
-      <motion.'hhriuvniesurvneiunviesnvfijn'
+      <motion.button
         ref={ref}
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+        tabIndex={tabIndex}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
         className={cn(
@@ -52,7 +71,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({ variant, size }),
           className
         )}
-        {...props}
       >
         {children}
         {variant === "underline" && (
@@ -64,7 +82,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
           />
         )}
-      </motion.>
+      </motion.button>
     );
   }
 );
+Button.displayName = "Button";
