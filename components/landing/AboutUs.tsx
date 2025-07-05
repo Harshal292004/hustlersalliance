@@ -1,23 +1,24 @@
 "use client";
-import { motion } from 'motion/react';
-import { Title } from './Title';
-
-export const AboutUs = ({id}:{id:string}) => {
+import { motion } from "motion/react";
+import { libre_caslon_display ,libre_baskerville } from "@/lib/fonts";
+export const AboutUs = ({ id }: { id: string }) => {
   return (
-    <section id={id} className="w-full bg-[#F6F0E6] dark:bg-[#292929] px-6 py-16 border-t border-[#292929]/10 dark:border-[#E9E5D8]/10">
+    <div
+      id={id}
+      className="w-full bg-[#E9E5d8] dark:bg-[#292929] mt-10 mb-1"
+    >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="max-w-2xl mx-auto text-center"
+        className={`flex items-center justify-center ${libre_caslon_display.className} text-[#E9E5D8] dark:text-[#292929] bg-[#292929] dark:bg-[#E9E5D8] w-full h-40 text-8xl`}
       >
-        <Title title="ABOUT US" />
-        <p className="mt-6 text-lg md:text-2xl text-[#292929] dark:text-[#E9E5D8]">
-          Just a fellow hustler
-        </p>
+        About Us
       </motion.div>
-    </section>
+      <p className={` ${libre_caslon_display.className}  p-14  flex items-center justify-center font-light mt-6 text-4xl text-[#292929] dark:text-[#E9E5D8]`}>
+        Just a fellow hustler
+      </p>
+    </div>
   );
-}
-
+};

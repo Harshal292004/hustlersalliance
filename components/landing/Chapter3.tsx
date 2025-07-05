@@ -1,65 +1,73 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import gsap from 'gsap';
-import fire from '@/assests/fire.png';
-
-export const Chapter3 = () => {
-  const fireRef = useRef<HTMLImageElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (fireRef.current) {
-      gsap.fromTo(
-        fireRef.current,
-        { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.2 }
-      );
-    }
-    if (textRef.current) {
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power2.out' }
-      );
-    }
-  }, []);
-
+"use client";
+import React from "react";
+import { libre_caslon_display } from "@/lib/fonts";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import flame from "@/assests/fire.png";
+const Chapter3 = () => {
   return (
-    <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[40vh] w-full bg-[#F6F0E6] dark:bg-[#292929] px-6 py-12 overflow-hidden border-t border-[#292929]/10 dark:border-[#E9E5D8]/10">
-      <div ref={textRef} className="z-10 max-w-xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-bold mb-4 text-[#292929] dark:text-[#E9E5D8]"
+    <div className="flex flex-col">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className={` font-bold flex items-center justify-start  ${libre_caslon_display.className} text-[#E9E5D8] dark:text-[#292929] bg-[#292929] dark:bg-[#E9E5D8] w-full  h-48  text-8xl`}
+      >
+        <motion.h1 className="ml-16">CHAPTER 3</motion.h1>
+      </motion.div>
+      <div className="flex flex-row w-full h-auto bg-[#E9E5D8] dark:bg-[#292929] px-16 pt-8 pb-0 ">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className={`${libre_caslon_display.className} tracking-wide flex flex-col gap-8`}
         >
-          CHAPTER 3
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-lg md:text-2xl text-[#292929] dark:text-[#E9E5D8] mb-2"
-        >
-          The Beast Mode
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-base md:text-lg text-[#292929] dark:text-[#E9E5D8]"
-        >
-          42 days in. The excuses are gone. The doubt is quiet. The discipline is built. This chapter isn't about starting. It's about domination. Everything from here is output. You don't try anymore. You just do it.
-        </motion.p>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="font-light text-7xl"
+          >
+            The Beast Mode
+          </motion.h2>
+
+          <motion.p className="font-light text-4xl leading-snug">
+            42 days in. The excuses are gone.
+            <br />
+            The doubt is quiet. The discipline is built.
+          </motion.p>
+
+          <motion.p className="font-light text-4xl leading-snug mt-6">
+            This chapter isn't about starting. It's about domination.
+          </motion.p>
+
+          <motion.p className="font-light text-4xl leading-snug mt-6">
+            Everything from here is output.
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="font-bold text-7xl mt-8"
+          >
+            YOU DON'T TRY ANYMORE.
+            <br />
+            YOU JUST DO IT.
+          </motion.h1>
+        </motion.div>
+
+        <div className="flex-1 relative overflow-visible">
+          <Image
+            src={flame}
+            alt="flame"
+            className="absolute w-[80%] max-w-none -top-[360px] left-[500px] tpointer-events-none select-none z-0"
+          />
+        </div>
       </div>
-      <img
-        ref={fireRef}
-        src={fire.src}
-        alt="Fire"
-        className="absolute right-0 bottom-0 w-1/3 max-w-xs md:max-w-md opacity-80 pointer-events-none select-none"
-        style={{ zIndex: 1 }}
-      />
-    </section>
+    </div>
   );
-}
+};
+
+export { Chapter3 };

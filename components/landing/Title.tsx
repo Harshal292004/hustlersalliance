@@ -16,6 +16,6 @@ export const Title = ({ title, subtitle }: { title: string; subtitle?: string })
       {subtitle && (
         <span className="text-lg md:text-2xl mt-2 text-[#E9E5D8]/80 dark:text-[#292929]/80">{subtitle}</span>
       )}
-    </motion.div>
+    </motion.div> 
   )
 }

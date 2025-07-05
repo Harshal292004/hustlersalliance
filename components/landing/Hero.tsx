@@ -57,7 +57,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="font-bold text-6xl"
+            className="font-bold text-8xl"
           >
             CHAPTER 1
           </motion.h1>
@@ -65,7 +65,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="font-bold text-4xl"
+            className="font-light text-7xl"
           >
             The Mirror
           </motion.h2>
@@ -80,7 +80,7 @@ export const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="font-bold text-6xl mt-2"
+            className="font-bold text-8xl mt-2"
           >
             JUST. YOU.
           </motion.h1>
@@ -91,7 +91,7 @@ export const Hero = () => {
         <Image
           src={hourglass}
           alt="Hourglass"
-          className="absolute w-[110%] max-w-none top-6 -right-[500px] pointer-events-none select-none z-0"
+          className="absolute w-[110%] max-w-none top-36 -right-[500px] pointer-events-none select-none z-0"
         />
       </div>
     </div>

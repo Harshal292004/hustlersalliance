@@ -1,6 +1,6 @@
 "use client";
-import { motion } from 'motion/react';
-import { Title } from './Title';
+import { motion } from "motion/react";
+import { libre_caslon_display } from "@/lib/fonts";
 
 const reviews = [
   { name: 'TheHustler', rating: 4.8, text: 'I finished the challenge. My discipline shot up. The information is gold.' },
@@ -8,18 +8,22 @@ const reviews = [
   { name: 'TheAchiever', rating: 4.7, text: 'If you want to change your habits, this is the book. No-nonsense and real.' },
 ];
 
-export const Reviews = ({id}:{id:string}) => {
+export const Reviews = ({ id }: { id: string }) => {
   return (
-    <section id={id} className="w-full bg-[#F6F0E6] dark:bg-[#292929] px-6 py-16 border-t border-[#292929]/10 dark:border-[#E9E5D8]/10">
+    <div
+      id={id}
+      className="w-full bg-[#E9E5D8] dark:bg-[#292929] mb-1"
+    >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="max-w-3xl mx-auto text-center"
+        className={`flex items-center justify-center ${libre_caslon_display.className} text-[#E9E5D8] dark:text-[#292929] bg-[#292929] dark:bg-[#E9E5D8] w-full h-40 text-8xl`}
       >
-        <Title title="REVIEWS" />
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+        REVIEWS
+      </motion.div>
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           {reviews.map((review, i) => (
             <motion.div
               key={i}
@@ -35,8 +39,8 @@ export const Reviews = ({id}:{id:string}) => {
             </motion.div>
           ))}
         </div>
-      </motion.div>
-    </section>
+    </div>
   );
-}
+};
+
 
