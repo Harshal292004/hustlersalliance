@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { libre_baskerville } from "@/lib/fonts";
 import { Button } from "./ui/Button";
 import { scrollToSection } from "@/lib/scrollToSection";
-import Link from "next/link";
+
 import { createClient } from "@/lib/supabase/client";
 import { LogoutButton } from "./auth/Logout-button";
-
+import { useRouter } from "next/navigation";
 const links = [
   { label: "About Us", target: "about-us" },
   { label: "Reviews", target: "reviews" },
@@ -16,35 +16,37 @@ const links = [
 ];
 
 export function Navbar({ id }: { id?: string }) {
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<any>(null);
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+
+  const routeTo = ({ href }: { href: string }) => {
+    router.push(href);
+  };
 
   useEffect(() => {
+    setMounted(true);
     const supabase = createClient();
-    supabase.auth.getUser().then(({ data: { user } }) => {
+
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
       setUser(user ? { email: user.email } : null);
+    };
+
+    fetchUser();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_evt, session) => {
+      setUser(session?.user ? { email: session.user.email } : null);
     });
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_evt, session) => {
-        setUser(session?.user ? { email: session.user.email } : null);
-      }
-    );
-
-    return () => {
-      listener.subscription.unsubscribe();
-    };
+    return () => subscription.unsubscribe();
   }, []);
 
-  if (user) {
-    return (
-      <div className="flex items-center gap-4">
-        <span className="text-sm text-muted-foreground">
-          Hey, {user.email}!
-        </span>
-        <LogoutButton />
-      </div>
-    );
-  }
+  if (!mounted) return null;
 
   return (
     <motion.header
@@ -54,28 +56,50 @@ export function Navbar({ id }: { id?: string }) {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className={`${libre_baskerville.className} fixed top-0 z-50 w-full bg-[#E9E5D8] dark:bg-[#292929]`}
     >
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-around p-12">
-        <div className="text-2xl font-bold leading-tight select-none">
-          Hustlers
-          <br />
-          Alliance
+      <nav className="mx-auto flex h-40 w-full items-center justify-around">
+        <div className="text-5xl font-bold leading-tight select-none">
+          Hustlers <br /> Alliance
         </div>
         <div className="flex items-center gap-6">
           {links.map((l) => (
             <Button
+              key={l.target}
               variant="underline"
               onClick={() => scrollToSection({ element_id: l.target })}
-              className="transition-colors"
+              className="text-2xl"
             >
               {l.label}
             </Button>
           ))}
-          <Button asChild>
-            <Link href="/auth/login">Login</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/auth/sign-up">Signup</Link>
-          </Button>
+
+          {user ? (
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground">
+                Hey, {user.email}!
+              </span>
+              <LogoutButton />
+            </div>
+          ) : (
+            <>
+              <Button
+                variant="solid"
+                className="p-6 text-2xl w-24 h-10"
+                onClick={() => {
+                  routeTo({ href: "/auth/login" });
+                }}
+              >
+                Login
+              </Button>
+              <Button
+                className="p-6 text-2xl w-28 h-10"
+                onClick={() => {
+                  routeTo({ href: "/auth/sign-up" });
+                }}
+              >
+                Signup
+              </Button>
+            </>
+          )}
         </div>
       </nav>
     </motion.header>

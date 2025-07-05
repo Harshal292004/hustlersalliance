@@ -7,7 +7,7 @@ import { Chapter3 } from "@/components/landing/Chapter3";
 import { AboutUs } from "@/components/landing/AboutUs";
 import { Reviews } from "@/components/landing/Reviews";
 import { Purchase } from "@/components/landing/Purchase";
-import { Title } from "@/components/landing/Title";
+
 export default function Home() {
   return (
     <>
