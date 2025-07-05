@@ -56,8 +56,8 @@ export function Navbar({ id }: { id?: string }) {
       transition={{ duration: 0.7, ease: "easeOut" }}
       className={`${libre_baskerville.className} fixed top-0 z-50 w-full bg-[#E9E5D8] dark:bg-[#292929]`}
     >
-      <nav className="mx-auto flex h-40 w-full items-center justify-around">
-        <div className="text-5xl font-bold leading-tight select-none">
+      <nav className="mx-auto flex h-36 w-full items-center justify-around gap-[450px]">
+        <div className="text-[40px] font-bold leading-tight select-none">
           Hustlers <br /> Alliance
         </div>
         <div className="flex items-center gap-6">
@@ -66,7 +66,7 @@ export function Navbar({ id }: { id?: string }) {
               key={l.target}
               variant="underline"
               onClick={() => scrollToSection({ element_id: l.target })}
-              className="text-2xl"
+              className="text-[30px] leading-8"
             >
               {l.label}
             </Button>
@@ -83,7 +83,7 @@ export function Navbar({ id }: { id?: string }) {
             <>
               <Button
                 variant="solid"
-                className="p-6 text-2xl w-24 h-10"
+                className="p-6 text-[30px] leading-8 w-28 h-10"
                 onClick={() => {
                   routeTo({ href: "/auth/login" });
                 }}
@@ -91,7 +91,7 @@ export function Navbar({ id }: { id?: string }) {
                 Login
               </Button>
               <Button
-                className="p-6 text-2xl w-28 h-10"
+                className="p-6 text-[30px] leading-8 w-32 h-10"
                 onClick={() => {
                   routeTo({ href: "/auth/sign-up" });
                 }}
