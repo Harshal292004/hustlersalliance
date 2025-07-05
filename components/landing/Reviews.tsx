@@ -1,19 +1,50 @@
 "use client";
 import { motion } from "motion/react";
 import { libre_caslon_display } from "@/lib/fonts";
+import Review from "./Review";
 
 const reviews = [
-  { name: 'TheHustler', rating: 4.8, text: 'I finished the challenge. My discipline shot up. The information is gold.' },
-  { name: 'TheGrinder', rating: 4.9, text: 'The best self-discipline book I have ever read. The structure is what I needed.' },
-  { name: 'TheAchiever', rating: 4.7, text: 'If you want to change your habits, this is the book. No-nonsense and real.' },
+  {
+    name: "TheHustler",
+    ratings: 4.8,
+    review:
+      "I finished the challenge. My discipline shot up. The information is gold.",
+  },
+  {
+    name: "TheGrinder",
+    ratings: 4.9,
+    review:
+      "The best self-discipline book I have ever read. The structure is what I needed.",
+  },
+  {
+    name: "TheAchiever",
+    ratings: 4.7,
+    review:
+      "If you want to change your habits, this is the book. No-nonsense and real.",
+  },
+  {
+    name: "TheClimber",
+    ratings: 4.6,
+    review:
+      "Every day felt more focused. Hustlers gave me a roadmap I didn’t have before.",
+  },
+  {
+    name: "TheThinker",
+    ratings: 5,
+    review:
+      "It stripped away fluff and left me with pure, useful insight. Rare these days.",
+  },
+  {
+    name: "TheDoer",
+    ratings: 4.85,
+    review:
+      "It finally clicked. Habits, goals, identity — all aligned after this.",
+  },
 ];
 
 export const Reviews = ({ id }: { id: string }) => {
   return (
-    <div
-      id={id}
-      className="w-full bg-[#E9E5D8] dark:bg-[#292929] mb-1"
-    >
+    <div id={id} className="w-full bg-[#E9E5D8] dark:bg-[#292929] mb-1">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -23,24 +54,12 @@ export const Reviews = ({ id }: { id: string }) => {
       >
         REVIEWS
       </motion.div>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {reviews.map((review, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.2 }}
-              className="bg-[#292929] dark:bg-[#E9E5D8] text-[#E9E5D8] dark:text-[#292929] rounded-lg p-6 shadow-lg"
-            >
-              <div className="font-bold text-lg mb-2">{review.name}</div>
-              <div className="mb-2">Rating: {review.rating} / 5</div>
-              <div className="italic">{review.text}</div>
-            </motion.div>
-          ))}
-        </div>
+
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 pb-12">
+        {reviews.map((review, i) => (
+          <Review {...review} key={i} />
+        ))}
+      </div>
     </div>
   );
 };
-
-

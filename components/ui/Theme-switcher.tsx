@@ -1,7 +1,6 @@
 "use client";
-
 import { Button } from "@/components/ui/Button";
-import { Laptop, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -17,20 +16,20 @@ const ThemeSwitcher = () => {
     return null;
   }
 
-  const ICON_SIZE = 16;
-
   return (
-    <Button onClick={(e)=>{e.preventDefault(); setTheme(prev=> prev==="dark"?"light":"dark")}}>
+    <Button 
+      variant="ghost"
+      size="icon"
+      onClick={(e) => {
+        e.preventDefault(); 
+        setTheme(prev => prev === "dark" ? "light" : "dark");
+      }}
+      className="rounded-full w-12 h-12 flex items-center justify-center"
+    >
       {theme === "light" ? (
-        <Sun key="light" size={ICON_SIZE} className={"text-muted-foreground"} />
-      ) : theme === "dark" ? (
-        <Moon key="dark" size={ICON_SIZE} className={"text-muted-foreground"} />
+        <Moon size={28} className="text-[#292929]" />
       ) : (
-        <Laptop
-          key="system"
-          size={ICON_SIZE}
-          className={"text-muted-foreground"}
-        />
+        <Sun size={28} className="text-[#E9E5D8]" />
       )}
     </Button>
   );
