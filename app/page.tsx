@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/landing/Hero";
-import { Chapter1 } from "@/components/landing/Chapter1";
 import { Chapter2 } from "@/components/landing/Chapter2";
 import { Chapter3 } from "@/components/landing/Chapter3";
 import { AboutUs } from "@/components/landing/AboutUs";
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Navbar id="nav"></Navbar>
       <Hero></Hero>
-      <Chapter1></Chapter1>
       <Chapter2></Chapter2>
       <Chapter3></Chapter3>
       <AboutUs id="about-us"></AboutUs>

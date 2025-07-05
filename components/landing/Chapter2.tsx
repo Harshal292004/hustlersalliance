@@ -1,65 +1,60 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import gsap from 'gsap';
-import clock from '@/assests/clock.png';
+"use client";
+import { motion } from "motion/react";
+import clock from "@/assests/clock.png";
+import { libre_caslon_display } from "@/lib/fonts";
+import Image from "next/image";
 
 export const Chapter2 = () => {
-  const clockRef = useRef<HTMLImageElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (clockRef.current) {
-      gsap.fromTo(
-        clockRef.current,
-        { x: -100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.2 }
-      );
-    }
-    if (textRef.current) {
-      gsap.fromTo(
-        textRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power2.out' }
-      );
-    }
-  }, []);
-
   return (
-    <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[40vh] w-full bg-[#F6F0E6] dark:bg-[#292929] px-6 py-12 overflow-hidden border-t border-[#292929]/10 dark:border-[#E9E5D8]/10">
-      <img
-        ref={clockRef}
-        src={clock.src}
-        alt="Clock"
-        className="absolute left-0 top-0 w-1/3 max-w-xs md:max-w-md opacity-60 pointer-events-none select-none"
-        style={{ zIndex: 1 }}
-      />
-      <div ref={textRef} className="z-10 max-w-xl ml-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-bold mb-4 text-[#292929] dark:text-[#E9E5D8]"
-        >
-          CHAPTER 2
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-lg md:text-2xl text-[#292929] dark:text-[#E9E5D8] mb-2"
-        >
-          You vs You
-        </motion.p>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-base md:text-lg text-[#292929] dark:text-[#E9E5D8]"
-        >
-          It's not them. It's not life. It's not luck. It's you. Your doubt. Your delay. Your choice. No one's in the way except you. So move. Or stay the same.
-        </motion.p>
+    <div className="border-t-8 border-black  flex flex-row w-full h-auto bg-[#E9E5D8] dark:bg-[#292929] px-16 mt-40 pt-8 pb-0 overflow-hidden">
+       <div className="flex-1 relative">
+        <Image
+          src={clock}
+          alt="clock"
+          className="absolute w-[90%] max-w-none -top-72 -left-[500px] pointer-events-none select-none z-0"
+        />
       </div>
-    </section>
+      <div className="flex-1 flex flex-col gap-16 z-10 max-w-2xl pt-8">
+        {/* chapter */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className={`${libre_caslon_display.className} tracking-wide  flex flex-col gap-8`}
+        >
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="font-bold text-8xl"
+          >
+            CHAPTER 2
+          </motion.h1>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="font-bold text-7xl"
+          >
+            You vs You
+          </motion.h2>
+          <motion.p className="font-light text-6xl leading-snug">
+            It's not them. It's not life. It's not luck. It's you.
+            <br />
+            Your doubt. Your delay. Your choice. No one’s in the way except you.
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="font-bold text-8xl mt-4"
+          >
+            SO MOVE.
+            <br/>
+            OR STAY THE SAME.
+          </motion.h1>
+        </motion.div>
+      </div>
+    </div>
   );
-}
+};
