@@ -38,9 +38,9 @@ const ThemeSwitcher = () => {
           transition={{ duration: 0.3 }}
         >
           {theme === "light" ? (
-            <Moon size={20} className="sm:w-7 sm:h-7 text-[#292929] dark:text-[#E9E5D8]" />
+            <Moon size={20} className="sm:w-7 sm:h-7 text-[#292929] " />
           ) : (
-            <Sun size={20} className="sm:w-7 sm:h-7 text-[#E9E5D8] dark:text-[#292929]" />
+            <Sun size={20} className="sm:w-7 sm:h-7 text-[#E9E5D8] " />
           )}
         </motion.div>
       </Button>

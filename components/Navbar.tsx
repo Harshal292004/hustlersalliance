@@ -61,15 +61,14 @@ export function Navbar({ id }: { id?: string }) {
     >
       <nav className="mx-auto flex h-16 sm:h-20 md:h-24 lg:h-36 w-full items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-16">
         {/* Logo */}
-        <motion.div 
+         <motion.div
           initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-[40px] font-bold leading-tight select-none"
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-2xl sm:text-3xl lg:text-[40px] font-bold leading-tight select-none mb-6 sm:mb-8 md:mb-0"
         >
-          <span className="block sm:inline">Hustlers</span>
-          <span className="hidden sm:inline"> </span>
-          <span className="block sm:inline">Alliance</span>
+          Hustlers <br /> Alliance
         </motion.div>
 
         {/* Desktop Navigation */}
