@@ -18,10 +18,10 @@ export async function AuthButton() {
 
   return (
     <>
-      <Button asChild className="mr-2 ml-2">
+      <Button className="mr-2 ml-2">
         <Link href="/auth/login">Login</Link>
       </Button>
-      <Button asChild>
+      <Button >
         <Link href="/auth/sign-up">Signup</Link>
       </Button>
     </>

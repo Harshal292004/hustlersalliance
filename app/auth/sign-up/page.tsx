@@ -1,3 +1,4 @@
+"use client"
 import { SignUpForm } from "@/components/auth/Sign-up-form";
 import Image from "next/image";
 import gear from "@/assests/gears.png";

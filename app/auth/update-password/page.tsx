@@ -1,3 +1,4 @@
+"use client"
 import { UpdatePasswordForm } from "@/components/auth/Update-password-form";
 
 export default function Page() {
