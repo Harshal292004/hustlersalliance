@@ -1,43 +1,19 @@
 "use client";
-import { redirect } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { libre_caslon_display } from "@/lib/fonts";
 import { Button } from "@/components/ui/Button";
 import { start_journey } from "@/actions/start_journey.actions";
 import { DashHero } from "@/components/Dashhero";
+import { useSupabaseUser } from "@/lib/hooks/useSupabaseUser";
 type UserState = { email: string } | null;
 
 export default function ProtectedPage() {
-  const [user, setUser] = useState<UserState>(null);
+  const {user,error,loading} = useSupabaseUser();
   const [mounted, setMounted] = useState(false);
+  useEffect(()=>setMounted(true));
 
-  useEffect(() => {
-    setMounted(true);
-    const supabase = createClient();
 
-    const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setUser(user && user.email ? { email: user.email } : null);
-    };
-
-    fetchUser();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(
-        session?.user && session.user.email
-          ? { email: session.user.email }
-          : null
-      );
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
 
   if (!mounted || user === null) return null;
 

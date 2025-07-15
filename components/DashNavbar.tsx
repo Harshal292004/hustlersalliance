@@ -3,11 +3,10 @@ import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { libre_baskerville } from "@/lib/fonts";
 import { Button } from "./ui/Button";
-import { scrollToSection } from "@/lib/scrollToSection";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
-
+import { usePathname } from "next/navigation";
 const links = [
   { label: "Leaderboard", href: "/dashboard/leaderboard" },
   { label: "Test", href: "/dashboard/test" },
@@ -20,6 +19,7 @@ export function DashNavbar({ id }: { id?: string }) {
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
+  const pathname=usePathname();
 
   const routeTo = ({ href }: { href: string }) => {
     router.push(href);
@@ -72,8 +72,9 @@ export function DashNavbar({ id }: { id?: string }) {
         >
           Hustlers <br /> Alliance
         </motion.div>
-
-        <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+        {
+          pathname === "/dashboard"?
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
           {links.map((l) => (
             <motion.div
               key={l.label}
@@ -106,6 +107,11 @@ export function DashNavbar({ id }: { id?: string }) {
           </motion.div>
         </div>
 
+
+          : 
+          <></>
+        }
+        
         <motion.button
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
