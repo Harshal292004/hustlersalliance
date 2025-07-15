@@ -1,7 +1,7 @@
 import React from 'react'
 import {motion} from 'framer-motion';
 import { libre_caslon_display } from '@/lib/fonts';
-import { createClient } from '@/lib/supabase/client';
+import Copyright from '@/components/Copyright';
 import { useSupabaseUser } from '@/lib/hooks/useSupabaseUser';
 type leader_user={
   name:string
@@ -10,8 +10,9 @@ type leader_user={
   level: string
 }
 
-const leader_row=({user,key}:{user:leader_user,key:number}):React.ReactNode=>{
+const LeaderRow=({user,key}:{user:leader_user,key:number})=>{
   return (
+    <>
     <motion.div className='rounded-md border-[#292929] flex-row justify-between' key={key}>
       <motion.p>
         {user.current_rank}
@@ -26,6 +27,8 @@ const leader_row=({user,key}:{user:leader_user,key:number}):React.ReactNode=>{
         {user.level}
       </motion.p>
     </motion.div>
+    </>
+    
   )
 }
 const page = () => {
@@ -76,13 +79,13 @@ const page = () => {
           leaderboard.map(
             (lu,index)=>{
               return (
-                <leader_row user={lu} key={index}></leader_row>
+                <LeaderRow user={lu} key={index}></LeaderRow>
               )
             }
           )
         }
       </motion.div>
-
+      <Copyright></Copyright>
     </div>
     
   )
