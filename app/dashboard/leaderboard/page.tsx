@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import { libre_caslon_display } from '@/lib/fonts';
 import Copyright from '@/components/Copyright';
 import { useSupabaseUser } from '@/lib/hooks/useSupabaseUser';
+
 type leader_user={
   name:string
   current_rank:number

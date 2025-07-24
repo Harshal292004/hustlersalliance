@@ -84,142 +84,146 @@ export function SignUpForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-8 w-[90%] max-w-md text-[#292929] dark:text-[#E9E5D8] mt-2"
+        className="flex flex-col gap-8 w-full max-w-2xl text-[#292929] dark:text-[#E9E5D8] mt-2"
       >
         <div className={`${libre_baskerville.className} text-center text-[40px]`}>
           Sign Up
         </div>
-        <div className="flex flex-col gap-6 mt-0">
-          <div>
-            <label
-              htmlFor="bookCode"
-              className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
-            >
-              Book Code
-            </label>
-            <input
-              id="bookCode"
-              type="text"
-              placeholder="AOP-42I"
-              required
-              value={bookCode}
-              onChange={(e) => setBookCode(e.target.value.toUpperCase())}
-              className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="name"
-              className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
-            >
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="John Doe"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="username"
-              className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
-            >
-              Username
-            </label>
-            <input
-              id="username"
-              type="text"
-              placeholder="john_doe"
-              required
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="email"
-              className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="mail@xyz.com"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="password"
-              className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
-            >
-              Password
-            </label>
-            <div className="relative">
-              <input
-                id="password"
-                type={showPass ? "text" : "password"}
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md`}
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2"
-                onClick={() => setShowPass(!showPass)}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left column */}
+          <div className="flex flex-col gap-6">
+            <div>
+              <label
+                htmlFor="bookCode"
+                className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
               >
-                {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
+                Book Code
+              </label>
+              <input
+                id="bookCode"
+                type="text"
+                placeholder="AOP-42I"
+                required
+                value={bookCode}
+                onChange={(e) => setBookCode(e.target.value.toUpperCase())}
+                className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="name"
+                className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
+              >
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                placeholder="John Doe"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="username"
+                className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
+              >
+                Username
+              </label>
+              <input
+                id="username"
+                type="text"
+                placeholder="john_doe"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
+              />
             </div>
           </div>
-          <div>
-            <label
-              htmlFor="confirmPassword"
-              className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
-            >
-              Confirm Password
-            </label>
-            <div className="relative">
-              <input
-                id="confirmPassword"
-                type={showConfirm ? "text" : "password"}
-                required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md`}
-              />
-              <button
-                type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2"
-                onClick={() => setShowConfirm(!showConfirm)}
+          {/* Right column */}
+          <div className="flex flex-col gap-6">
+            <div>
+              <label
+                htmlFor="email"
+                className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
               >
-                {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
-              </button>
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="mail@xyz.com"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md placeholder-[#292929]/30 dark:placeholder-[#E9E5D8]/30`}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
+              >
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  id="password"
+                  type={showPass ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md`}
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  onClick={() => setShowPass(!showPass)}
+                >
+                  {showPass ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="confirmPassword"
+                className={`${libre_caslon_display.className} font-extrabold block mb-2 text-4xl`}
+              >
+                Confirm Password
+              </label>
+              <div className="relative">
+                <input
+                  id="confirmPassword"
+                  type={showConfirm ? "text" : "password"}
+                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className={`${libre_caslon_display.className} font-bold w-full px-5 py-4 text-3xl border-[3px] bg-[#E9E5D8] dark:bg-[#292929] border-[#292929] dark:border-[#E9E5D8] rounded-md`}
+                />
+                <button
+                  type="button"
+                  className="absolute right-3 top-1/2 -translate-y-1/2"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                >
+                  {showConfirm ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
             </div>
           </div>
-
-          {error && <p className="text-sm text-red-500">{error}</p>}
-
-          <Button
-            className="w-full py-4 !text-2xl !font-semibold shadow-lg"
-            variant="underline"
-            disabled={loading}
-          >
-            {loading ? "Signing up..." : "Continue"}
-          </Button>
         </div>
 
+        {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+        <Button
+          className="w-full py-4 !text-2xl !font-semibold shadow-lg"
+          variant="underline"
+          disabled={loading}
+        >
+          {loading ? "Signing up..." : "Continue"}
+        </Button>
         <div className={`${libre_caslon_display.className} text-center text-2xl`}>
           Already have an account?{" "}
           <Link href="/auth/login" className="font-medium underline">
